@@ -6,6 +6,10 @@
 package project_slang_dictionary;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeSet;
 
 /**
  *
@@ -20,7 +24,20 @@ public class Project_Slang_Dictionary {
     public static void main(String[] args) throws FileNotFoundException {
         // TODO code application logic here
         File_IO Read_file = new File_IO();
+        Function fc = new Function();
+        Map<String, ArrayList> map = null;
+        HashMap<String, TreeSet<String>> hashmap;
+        
         String filename = "slang.txt";
-        Read_file.ReadFile(filename);
+        
+        map = Read_file.ReadFile(filename);
+        int sizeMap = map.size();
+
+        hashmap = fc.ImportData(sizeMap + 100, map);
+        hashmap = fc.AddNewWord(hashmap);
+        hashmap = fc.AddNewWord(hashmap);
+                
+//        System.out.println(map);
+        System.out.println(hashmap);
     }
 }
