@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
@@ -77,6 +78,58 @@ public class File_IO {
             }
         }
         return null;
+    }
+    
+    public static void WriteFile(HashMap data)throws IOException{
+        
+        
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        File file = new File("output.txt");
+        try {
+            if (!file.exists()) {
+                file.createNewFile();                
+            }
+            
+            fw = new FileWriter(file, false);    
+            bw = new BufferedWriter(fw);
+            Iterator hmIterator = data.entrySet().iterator();       
+            while (hmIterator.hasNext()) {
+                
+                Map.Entry mapElement = (Map.Entry)hmIterator.next();
+                String Content = "";
+                String Word = (String) mapElement.getKey();
+                
+                TreeSet<String> list = (TreeSet<String>) mapElement.getValue();
+                String Definition = "";
+                
+                while(!list.isEmpty()){
+                    if(list.size() == 1){
+                        Definition += list.pollFirst();
+                    }
+                    else {
+                        Definition += list.pollFirst() + "| ";
+                    }
+                }
+            
+                Content = Word + '`' + Definition;
+                bw.write(Content);
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bw != null) {
+                    bw.close();
+                }
+                if (fw != null) {
+                    fw.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
     
 }
