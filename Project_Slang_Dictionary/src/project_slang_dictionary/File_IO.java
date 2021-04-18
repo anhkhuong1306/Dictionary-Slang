@@ -36,28 +36,42 @@ public class File_IO {
         FileReader fr = null;
         try{
             
-            fr = new FileReader(filename);
+            File f = new File(filename);
+            
+            if (f.exists()) {
+                System.out.println("File existed");
+                fr = new FileReader(filename);
+            } else {
+                System.out.println("File not found!");
+                fr = new FileReader("slang.txt");
+            }
+            
             br = new BufferedReader(fr);
             String sCurrentLine;
-            br = new BufferedReader(new FileReader(filename));
             int count = 0;
             Map<String, TreeSet<String>> map = new HashMap<>();
             while((sCurrentLine = br.readLine()) != null){
                 String[] strArray = new String[2];
                 String arrayWord[] = sCurrentLine.split("`");
                 Collection<String> Definition = new TreeSet<>();
-                  
-                if(arrayWord.length >= 2){
-                    if(arrayWord[1].contains("|")){
-                        Definition.addAll(Arrays.asList(arrayWord[1].replace("|", ",").split(", ")));
-                    }
-                    else
-                    {
+                
+                if (arrayWord.length >= 2) {
+                    if (arrayWord[1].contains("|")) {
+                        Definition.addAll(Arrays.asList(arrayWord[1].replaceAll("(\\| ?)", ",").split(",")));
+                    } else {
                         Definition.add(arrayWord[1]);
                     }
                 }
                 
-                map.put(arrayWord[0], (TreeSet<String>) Definition);
+                if(map.containsKey(arrayWord[0]) == false){
+                   
+                    map.put(arrayWord[0], (TreeSet<String>) Definition);
+                }
+                else{
+                    TreeSet<String> tmpArr = map.get(arrayWord[0]);
+                    tmpArr.addAll(Definition);
+                }
+                
             }
             return map;
         }
@@ -132,4 +146,6 @@ public class File_IO {
         }
     }
     
+    
+
 }

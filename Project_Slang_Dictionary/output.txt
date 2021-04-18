@@ -894,7 +894,6 @@ IYAM`If You Ask Me
 CPM`Cost Per Thousand
 DISO`Desperately In Search Of
 CPP`C Plus Plus| C++ (programming language)
-Person wearing a hooded sweatshirt`
 THAR`There
 TRA`Bye
 CPR`Cardiopulmonary Resuscitation
@@ -1548,7 +1547,7 @@ DNC`Democratic National Committee
 DNB`Drum And Bass
 HA`Sarcastic laugh
 DNE`Do Not Erase| Does Not Exist
-HB`Hurry Back
+HB`Hug Back| Hurry Back
 DND`Do Not Disturb
 HC`Holy Cow
 HEYY`Hey You
@@ -1556,7 +1555,7 @@ DNF`Did Not Finish
 HF`Have Fun
 HG`Holy Grail
 DNK`Do Not Know
-HH`Holding Hands
+HH`Ha-Ha| Holding Hands
 HI`Hello
 DNM`Deep and Meaningful| Does Not Matter
 DNO`Don't Know
@@ -4426,7 +4425,7 @@ TE AMO`I love you (Spanish)
 ELBOW`A pound of marijuana
 (S)`Seriously
 SLAN`Goodbye
-HOODIE`Hooded sweatshirt
+HOODIE`Hooded sweatshirt| Person wearing a hooded sweatshirt
 LUWAMH`Love You with All My Heart
 WAFWOT`What A F***ing Waste Of Time
 JUZ`Just
@@ -6262,7 +6261,7 @@ CARD`Amusing| eccentric person
 OTS`On The Side
 SPANNER`Idiot| fool
 NARU`Not A Registered User
-OTW`On The Whole
+OTW`On The Way| On The Whole
 YARD`Home
 OTZ`ORZ
 NARP`Non-Athletic Regular Person

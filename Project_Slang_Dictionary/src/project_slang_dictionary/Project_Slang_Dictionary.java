@@ -24,25 +24,40 @@ public class Project_Slang_Dictionary {
     
     public static void main(String[] args) throws FileNotFoundException, IOException {
         // TODO code application logic here
+        long startTime = System.currentTimeMillis();
+
         File_IO Read_file = new File_IO();
         Function fc = new Function();
-        Map<String, ArrayList> map = null;
+//        Map<String, ArrayList> map = null;
         HashMap<String, TreeSet<String>> hashmap;
+//        
+//        String filename = "slang.txt";
+//        
+//        map = Read_file.ReadFile(filename);
+//        int sizeMap = map.size();
+//
+//
+        hashmap = fc.ReadData(0, "output.txt");
         
-        String filename = "slang.txt";
-        
-        map = Read_file.ReadFile(filename);
-        int sizeMap = map.size();
 
-        hashmap = fc.ImportData(sizeMap + 100, map);
+
 //        hashmap = fc.AddNewWord(hashmap);
 //        hashmap = fc.AddNewWord(hashmap);
 //        System.out.println(hashmap);
 //        hashmap = fc.DeleteWord(hashmap);
 //          hashmap = fc.EditWord(hashmap);
 //        System.out.println(map);
+            
         System.out.println(hashmap);
         
-        Read_file.WriteFile(hashmap);
+
+        System.out.println();
+//        Read_file.WriteFile(hashmap);
+        System.out.println(hashmap.get("HOOT"));
+        long endTime = System.currentTimeMillis();
+        long timeElapsed = endTime - startTime;
+        System.out.println("Execution time in milliseconds: " + timeElapsed);
+
+
     }
 }

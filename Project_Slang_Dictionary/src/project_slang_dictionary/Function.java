@@ -5,12 +5,15 @@
  */
 package project_slang_dictionary;
 
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeSet;
+import static project_slang_dictionary.File_IO.ReadFile;
 
 /**
  *
@@ -18,10 +21,17 @@ import java.util.TreeSet;
  */
 public class Function {
     
+    
+    static final String DEFAULT_FILE_NAME = "slang.txt";
+    static final int DEFAULT_RESET_FILE = 1;
+
+    
     public HashMap ImportData(int capacity, Map data){
         HashMap<String, TreeSet<String>> Data = new HashMap<String, TreeSet<String>>(data);
         return Data;
     }
+    
+
     
     public HashMap AddNewWord(HashMap Data){
         Slang sl = new Slang();
@@ -173,6 +183,36 @@ public class Function {
                 }
             }
         }
+        return Data;
+    }
+    
+    /**
+     *
+     * @param <error>
+     * @param reset
+     * @return
+     */
+    public static HashMap ReadData(int reset, String filename) throws FileNotFoundException{
+        
+        HashMap<String, TreeSet<String>> Data;
+        Map<String, ArrayList> map = null;
+        
+        File_IO file = new File_IO();
+        Function fc = new Function();
+        
+        String FILE_NAME = "";
+        
+        if(reset != 1){
+            FILE_NAME = filename.length() != 0 || !filename.equalsIgnoreCase(DEFAULT_FILE_NAME) ? filename : DEFAULT_FILE_NAME;
+        }
+        else{
+            FILE_NAME = DEFAULT_FILE_NAME;
+        }
+        
+        map = file.ReadFile(FILE_NAME);
+        int sizeMap = map.size();
+        Data = fc.ImportData(sizeMap + 100, map);
+        
         return Data;
     }
 

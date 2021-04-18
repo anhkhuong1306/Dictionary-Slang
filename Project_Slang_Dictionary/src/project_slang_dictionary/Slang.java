@@ -40,8 +40,7 @@ public class Slang {
     }
     
     public void PrintSlang(){
-        System.out.println("Word: " + this.word);
-        System.out.println("Definition: " + (this.definition));
+        System.out.println("Word: " + this.word + " -> " + this.listdefinition);
     }
     
     public void InputWord(){
