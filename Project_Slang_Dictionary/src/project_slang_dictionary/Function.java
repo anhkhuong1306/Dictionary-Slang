@@ -216,4 +216,31 @@ public class Function {
         return Data;
     }
 
+    
+    public static void SearchBySlang(String slang, HashMap Data){
+        Slang slang_definition = new Slang();
+        TreeSet<String>Definition = new TreeSet<String>();
+        Definition = (TreeSet<String>) Data.get(slang);
+        if(Definition == null){
+            System.out.println("The Slang is not exists.");
+            return;
+        }
+        slang_definition.setLístDefinition(Definition);
+        slang_definition.PrintDefinition();
+    }
+    
+    public static HashMap History(String slang, HashMap Data, HashMap history){
+        TreeSet<String>Definition = new TreeSet<String>();
+        Definition = (TreeSet<String>) Data.get(slang);
+        System.out.println(Definition);
+        if(Definition != null){
+            history.put(slang, Definition);
+        }
+        else{
+            Definition = new TreeSet<String>();
+            Definition.add("No definition for this slang word");
+            history.put(slang, Definition);
+        }
+        return history;
+    }
 }

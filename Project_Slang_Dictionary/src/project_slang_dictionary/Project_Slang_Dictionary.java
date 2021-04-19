@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.TreeSet;
 
 /**
@@ -24,6 +25,10 @@ public class Project_Slang_Dictionary {
     
     public static void main(String[] args) throws FileNotFoundException, IOException {
         // TODO code application logic here
+        String slang = "";
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter slang you want to search: ");
+        slang = sc.nextLine();
         long startTime = System.currentTimeMillis();
 
         File_IO Read_file = new File_IO();
@@ -53,11 +58,12 @@ public class Project_Slang_Dictionary {
 
         System.out.println();
 //        Read_file.WriteFile(hashmap);
-        System.out.println(hashmap.get("HOOT"));
+        fc.SearchBySlang(slang, hashmap);
         long endTime = System.currentTimeMillis();
-        long timeElapsed = endTime - startTime;
+        long timeElapsed = endTime - startTime;   
         System.out.println("Execution time in milliseconds: " + timeElapsed);
-
-
+        HashMap<String, TreeSet<String>> history = new HashMap<>();
+        history = fc.History(slang, hashmap, history);
+        Read_file.WriteFile(history, "history.txt");
     }
 }

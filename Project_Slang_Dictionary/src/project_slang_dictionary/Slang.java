@@ -7,6 +7,7 @@ package project_slang_dictionary;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.TreeSet;
 
@@ -50,6 +51,15 @@ public class Slang {
         System.out.println("Enter the Definition: ");
         sc = new Scanner(System.in);
         this.definition = sc.nextLine();
+    }
+    
+    public void PrintDefinition(){
+        Iterator iterator = this.listdefinition.iterator();
+        int count = 1;
+        while (iterator.hasNext()){
+            System.out.println(count + ". " +iterator.next());
+            count++;
+        } 
     }
 
     public String getDefinition() {

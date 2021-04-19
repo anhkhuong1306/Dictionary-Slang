@@ -94,12 +94,12 @@ public class File_IO {
         return null;
     }
     
-    public static void WriteFile(HashMap data)throws IOException{
+    public static void WriteFile(HashMap data, String filename)throws IOException{
         
         
         FileWriter fw = null;
         BufferedWriter bw = null;
-        File file = new File("output.txt");
+        File file = new File(filename);
         try {
             if (!file.exists()) {
                 file.createNewFile();                
