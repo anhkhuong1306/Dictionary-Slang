@@ -39,10 +39,8 @@ public class File_IO {
             File f = new File(filename);
             
             if (f.exists()) {
-                System.out.println("File existed");
                 fr = new FileReader(filename);
             } else {
-                System.out.println("File not found!");
                 fr = new FileReader("slang.txt");
             }
             

@@ -43,6 +43,8 @@ public class Project_Slang_Dictionary {
 //
 //
         hashmap = fc.ReadData(0, "output.txt");
+        System.out.println(hashmap.size());
+        
         
 
 
@@ -58,12 +60,15 @@ public class Project_Slang_Dictionary {
 
         System.out.println();
 //        Read_file.WriteFile(hashmap);
-        fc.SearchBySlang(slang, hashmap);
+//        fc.SearchBySlang(slang, hashmap);
         long endTime = System.currentTimeMillis();
         long timeElapsed = endTime - startTime;   
+//        fc.SearchByDefinition(hashmap, "Cool");
+//        fc.ThisDaySlang(hashmap);
+        fc.QuizSlang(hashmap);
         System.out.println("Execution time in milliseconds: " + timeElapsed);
-        HashMap<String, TreeSet<String>> history = new HashMap<>();
-        history = fc.History(slang, hashmap, history);
-        Read_file.WriteFile(history, "history.txt");
+//        HashMap<String, TreeSet<String>> history = new HashMap<>();
+//        history = fc.History(slang, hashmap, history);
+//        Read_file.WriteFile(history, "history.txt");
     }
 }

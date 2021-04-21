@@ -6,13 +6,21 @@
 package project_slang_dictionary;
 
 import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 import static project_slang_dictionary.File_IO.ReadFile;
 
 /**
@@ -242,5 +250,117 @@ public class Function {
             history.put(slang, Definition);
         }
         return history;
+    }
+    
+    public static void SearchByDefinition(HashMap<String, TreeSet<String>> data, String value) {
+        TreeSet<String> key_finded = new TreeSet<String>();
+        Slang slang_definition = new Slang();
+
+        for (String key: data.keySet())
+        {
+            if (data.get(key).contains(value)) {
+               key_finded.add((String)key);
+            }
+        }
+        slang_definition.setLístDefinition(key_finded);
+        slang_definition.PrintDefinition();
+    }
+    
+    public static void ThisDaySlang(HashMap<String, TreeSet<String>> data){
+        LocalDate currentDate = LocalDate.now();
+        int day = currentDate.getDayOfMonth();
+        int month = currentDate.getMonthValue();
+        int year = currentDate.getYear();
+        
+        int index = day + month + year;
+        if(index > data.size()){
+            index = index - data.size();
+        }
+        Iterator it = data.entrySet().iterator();
+        while (it.hasNext() && index != 0) {
+            Map.Entry pair = (Map.Entry)it.next();
+            if(index == 1){
+                System.out.println("slang: " + pair.getKey());
+                System.out.println("Definition: ");
+                Slang slang = new Slang();
+                slang.setLístDefinition((Collection) pair.getValue());
+                slang.PrintDefinition();
+            }
+            index -= 1;
+        }
+    }
+    
+    public static void QuizSlang(HashMap<String, TreeSet<String>> data){
+        int size_data = data.size();
+        Random rand = new Random();
+        ArrayList<Integer> set = new ArrayList<Integer>(4);
+        ArrayList<String> answerList = new ArrayList<String>();
+        String Question = "";
+        String Result = "";
+        
+        while(set.size() < 4){
+            set.add(rand.nextInt(size_data) + 1);
+        }
+        
+        Iterator it = data.entrySet().iterator();
+        while (it.hasNext() && set.isEmpty() == false && size_data != 0) {
+            Map.Entry pair = (Map.Entry)it.next();
+            boolean isExists = set.contains(size_data);
+            TreeSet<String> answer;
+            
+            if(isExists == true){
+                int index = set.indexOf(size_data);
+                int index_answer = 0;
+                answer = (TreeSet<String>) pair.getValue();
+                answerList.add(index_answer, answer.first().toString());
+                
+                if(set.size() == 1){
+                    answer = (TreeSet<String>) pair.getValue();
+                    Question = pair.getKey().toString();
+                    Result = answer.first().toString();
+                }
+                set.remove((Object)size_data);
+            }
+            
+            size_data -= 1;            
+        }
+        
+        System.out.println("Choose the A, B, C, D to select the answer.");
+        System.out.println("Question: " + Question);
+        Collections.shuffle(answerList);
+   
+        System.out.println("A " + answerList.get(0));
+        System.out.println("B " + answerList.get(1));
+        System.out.println("C " + answerList.get(2));
+        System.out.println("D " + answerList.get(3));
+
+        String user_answer = "";
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter your answer: ");
+        user_answer = sc.nextLine();
+        
+        switch(user_answer.toUpperCase()){
+            case "A":
+                user_answer = answerList.get(0);
+                break;
+            case "B":
+                user_answer = answerList.get(1);
+                break;
+            case "C":
+                user_answer = answerList.get(2);
+                break;
+            case "D":
+                user_answer = answerList.get(3);
+                break;
+            default:
+                user_answer = "";
+        }
+        
+        if(user_answer.equalsIgnoreCase(Result)){
+            System.out.println("Your answer is correct.");
+        }
+        else{
+            System.out.println("Your answer is incorrect.");
+        }
     }
 }
