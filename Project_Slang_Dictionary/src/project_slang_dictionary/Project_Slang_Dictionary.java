@@ -25,10 +25,10 @@ public class Project_Slang_Dictionary {
     
     public static void main(String[] args) throws FileNotFoundException, IOException {
         // TODO code application logic here
-        String slang = "";
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter slang you want to search: ");
-        slang = sc.nextLine();
+//        String slang = "";
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Enter slang you want to search: ");
+//        slang = sc.nextLine();
         long startTime = System.currentTimeMillis();
 
         File_IO Read_file = new File_IO();
@@ -43,7 +43,6 @@ public class Project_Slang_Dictionary {
 //
 //
         hashmap = fc.ReadData(0, "output.txt");
-        System.out.println(hashmap.size());
         
         
 
@@ -65,7 +64,8 @@ public class Project_Slang_Dictionary {
         long timeElapsed = endTime - startTime;   
 //        fc.SearchByDefinition(hashmap, "Cool");
 //        fc.ThisDaySlang(hashmap);
-        fc.QuizSlang(hashmap);
+          fc.QuizDefinition(hashmap);
+//        fc.QuizSlang(hashmap);
         System.out.println("Execution time in milliseconds: " + timeElapsed);
 //        HashMap<String, TreeSet<String>> history = new HashMap<>();
 //        history = fc.History(slang, hashmap, history);

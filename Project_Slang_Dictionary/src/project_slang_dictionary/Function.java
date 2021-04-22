@@ -6,6 +6,7 @@
 package project_slang_dictionary;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -196,8 +197,8 @@ public class Function {
     
     /**
      *
-     * @param <error>
      * @param reset
+     * @param filename
      * @return
      */
     public static HashMap ReadData(int reset, String filename) throws FileNotFoundException{
@@ -227,7 +228,7 @@ public class Function {
     
     public static void SearchBySlang(String slang, HashMap Data){
         Slang slang_definition = new Slang();
-        TreeSet<String>Definition = new TreeSet<String>();
+        TreeSet<String>Definition = new TreeSet<>();
         Definition = (TreeSet<String>) Data.get(slang);
         if(Definition == null){
             System.out.println("The Slang is not exists.");
@@ -238,7 +239,7 @@ public class Function {
     }
     
     public static HashMap History(String slang, HashMap Data, HashMap history){
-        TreeSet<String>Definition = new TreeSet<String>();
+        TreeSet<String>Definition = new TreeSet<>();
         Definition = (TreeSet<String>) Data.get(slang);
         System.out.println(Definition);
         if(Definition != null){
@@ -253,7 +254,7 @@ public class Function {
     }
     
     public static void SearchByDefinition(HashMap<String, TreeSet<String>> data, String value) {
-        TreeSet<String> key_finded = new TreeSet<String>();
+        TreeSet<String> key_finded = new TreeSet<>();
         Slang slang_definition = new Slang();
 
         for (String key: data.keySet())
@@ -266,7 +267,7 @@ public class Function {
         slang_definition.PrintDefinition();
     }
     
-    public static void ThisDaySlang(HashMap<String, TreeSet<String>> data){
+    public static void ThisDaySlang(HashMap<String, TreeSet<String>> data) throws IOException{
         LocalDate currentDate = LocalDate.now();
         int day = currentDate.getDayOfMonth();
         int month = currentDate.getMonthValue();
@@ -276,25 +277,55 @@ public class Function {
         if(index > data.size()){
             index = index - data.size();
         }
-        Iterator it = data.entrySet().iterator();
-        while (it.hasNext() && index != 0) {
-            Map.Entry pair = (Map.Entry)it.next();
-            if(index == 1){
-                System.out.println("slang: " + pair.getKey());
-                System.out.println("Definition: ");
-                Slang slang = new Slang();
-                slang.setLístDefinition((Collection) pair.getValue());
-                slang.PrintDefinition();
-            }
-            index -= 1;
+        
+        
+        File_IO file = new File_IO();
+        Map loadFromFile = file.ReadFile("thisdayslangword.txt");
+        Slang slang = new Slang();
+        
+        if(loadFromFile.containsKey(currentDate)){
+            
+            String slangWord = loadFromFile.keySet().toArray()[0].toString();  
+            TreeSet<String> definitions = new TreeSet<>();
+            
+            definitions = data.get(slangWord);
+
+            System.out.println("Slang: " + slangWord);
+            System.out.println("Definition: ");
+            
+            slang.setLístDefinition(definitions);
+            slang.PrintDefinition();
+            
         }
+        else
+        {
+            
+            Map.Entry<String, TreeSet<String>> entry = (Map.Entry<String, TreeSet<String>>) data.entrySet().toArray()[index];
+            HashMap<String, TreeSet<String>> thisDaySlangWord = new HashMap<>();
+            TreeSet<String> definitions = entry.getValue();
+            
+            System.out.println("Slang: " + entry.getKey());
+            System.out.println("Definition: ");
+            
+            slang.setLístDefinition(definitions);
+            slang.PrintDefinition();
+            
+            definitions = new TreeSet<>();
+            definitions.add(currentDate.toString());
+            
+            thisDaySlangWord.put(entry.getKey(), definitions);
+            
+            file.WriteFile(thisDaySlangWord, "thisdayslangword.txt");
+        
+        }
+        
     }
     
     public static void QuizSlang(HashMap<String, TreeSet<String>> data){
         int size_data = data.size();
         Random rand = new Random();
-        ArrayList<Integer> set = new ArrayList<Integer>(4);
-        ArrayList<String> answerList = new ArrayList<String>();
+        ArrayList<Integer> set = new ArrayList<>(4);
+        ArrayList<String> answerList = new ArrayList<>();
         String Question = "";
         String Result = "";
         
@@ -302,28 +333,133 @@ public class Function {
             set.add(rand.nextInt(size_data) + 1);
         }
         
-        Iterator it = data.entrySet().iterator();
-        while (it.hasNext() && set.isEmpty() == false && size_data != 0) {
-            Map.Entry pair = (Map.Entry)it.next();
-            boolean isExists = set.contains(size_data);
+        for(int i = 0; i < set.size(); i++){
+            Map.Entry<String, TreeSet<String>> entry = (Map.Entry<String, TreeSet<String>>) data.entrySet().toArray()[set.get(i)];
             TreeSet<String> answer;
+            answer = (TreeSet<String>) entry.getValue();
+            boolean isExists = set.contains(size_data);
+            int index = set.indexOf(set.get(i));
+            answerList.add(index, answer.first().toString());
             
-            if(isExists == true){
-                int index = set.indexOf(size_data);
-                int index_answer = 0;
-                answer = (TreeSet<String>) pair.getValue();
-                answerList.add(index_answer, answer.first().toString());
-                
-                if(set.size() == 1){
-                    answer = (TreeSet<String>) pair.getValue();
-                    Question = pair.getKey().toString();
-                    Result = answer.first().toString();
-                }
-                set.remove((Object)size_data);
+            if(i == set.size() - 1){
+                answer = (TreeSet<String>) entry.getValue();
+                Question = entry.getKey();
+                Result = answer.first();
             }
-            
-            size_data -= 1;            
         }
+        
+//        Iterator it = data.entrySet().iterator();
+//        while (it.hasNext() && set.isEmpty() == false && size_data != 0) {
+//            Map.Entry pair = (Map.Entry)it.next();
+//            boolean isExists = set.contains(size_data);
+//            TreeSet<String> answer;
+//            
+//            if(isExists == true){
+//                int index = set.indexOf(size_data);
+//                int index_answer = 0;
+//                answer = (TreeSet<String>) pair.getValue();
+//                answerList.add(index_answer, answer.first().toString());
+//                
+//                if(set.size() == 1){
+//                    answer = (TreeSet<String>) pair.getValue();
+//                    Question = pair.getKey().toString();
+//                    Result = answer.first().toString();
+//                }
+//                set.remove((Object)size_data);
+//            }
+//            
+//            size_data -= 1;            
+//        }
+        
+        System.out.println("Choose the A, B, C, D to select the answer.");
+        System.out.println("Question: " + Question);
+        Collections.shuffle(answerList);
+   
+        System.out.println("A " + answerList.get(0));
+        System.out.println("B " + answerList.get(1));
+        System.out.println("C " + answerList.get(2));
+        System.out.println("D " + answerList.get(3));
+
+        String user_answer = "";
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter your answer: ");
+        user_answer = sc.nextLine();
+        
+        switch(user_answer.toUpperCase()){
+            case "A":
+                user_answer = answerList.get(0);
+                break;
+            case "B":
+                user_answer = answerList.get(1);
+                break;
+            case "C":
+                user_answer = answerList.get(2);
+                break;
+            case "D":
+                user_answer = answerList.get(3);
+                break;
+            default:
+                user_answer = "";
+        }
+        
+        if(user_answer.equalsIgnoreCase(Result)){
+            System.out.println("Your answer is correct.");
+        }
+        else{
+            System.out.println("Your answer is incorrect.");
+        }
+    }
+    
+    public static void QuizDefinition(HashMap<String, TreeSet<String>> data){
+        int size_data = data.size();
+        Random rand = new Random();
+        ArrayList<Integer> set = new ArrayList<>(4);
+        ArrayList<String> answerList = new ArrayList<>();
+        String Question = "";
+        String Result = "";
+        
+        while(set.size() < 4){
+            set.add(rand.nextInt(size_data) + 1);
+        }
+        
+        for (int i = 0; i < set.size(); i++) {
+            Map.Entry<String, TreeSet<String>> entry = (Map.Entry<String, TreeSet<String>>) data.entrySet().toArray()[set.get(i)];
+            String answer;
+            answer = entry.getKey();
+            boolean isExists = set.contains(size_data);
+            int index = set.indexOf(set.get(i));
+            answerList.add(index, answer);
+
+            if (i == set.size() - 1) {
+                TreeSet<String> TSQuestion = entry.getValue();
+                Question = TSQuestion.first();
+                Result = answer;
+            }
+        }
+        
+//        Iterator it = data.entrySet().iterator();
+//        while (it.hasNext() && set.isEmpty() == false && size_data != 0) {
+//            Map.Entry pair = (Map.Entry)it.next();
+//            boolean isExists = set.contains(size_data);
+//            String answer;
+//            
+//            if(isExists == true){
+//                int index = set.indexOf(size_data);
+//                int index_answer = 0;
+//                answer = pair.getKey().toString();
+//                answerList.add(index_answer, answer);
+//                
+//                if(set.size() == 1){
+//                    answer =  pair.getKey().toString();
+//                    TreeSet<String> TSQuestion = (TreeSet<String>) pair.getValue();
+//                    Question = TSQuestion.first().toString();
+//                    Result = answer;
+//                }
+//                set.remove((Object)size_data);
+//            }
+//            
+//            size_data -= 1;            
+//        }
         
         System.out.println("Choose the A, B, C, D to select the answer.");
         System.out.println("Question: " + Question);
