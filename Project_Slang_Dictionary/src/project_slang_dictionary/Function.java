@@ -55,21 +55,18 @@ public class Function {
             if(YES_NO.equalsIgnoreCase("yes")){
                 
                 definition = (TreeSet<String>) Data.get(sl.getWord());
+                System.out.println(definition);
                 if(definition == null){
 
                     definition.add(sl.getDefinition());
                     Data.put(sl.getWord(), definition);
-                    System.out.println("The slang has added.");
-                    System.out.println(Data.get(sl.getWord()));
-
+                    System.out.print("The slang has added: " + sl.getWord());
                 }
                 else{
-
                     definition.add(sl.getDefinition());
+                    System.out.print(definition.getClass());
                     Data.put(sl.getWord(), definition);
-                    System.out.println("The slang has added.");
-                    System.out.println(Data.get(sl.getWord()));
-
+                    System.out.print("The slang has added: " + sl.getWord());
                 }
             }
             else{
@@ -79,10 +76,8 @@ public class Function {
         else
         {
             definition.add(sl.getDefinition());
-            Data.put(sl.getWord(), sl.getDefinition());
-            System.out.println("The slang has added.");
-            System.out.println(Data.get(sl.getWord()));
-
+            Data.put(sl.getWord(), definition);
+            System.out.println("The slang has added. " + sl.getWord());
         }
         return Data;
     }
@@ -221,7 +216,6 @@ public class Function {
         map = file.ReadFile(FILE_NAME);
         int sizeMap = map.size();
         Data = fc.ImportData(sizeMap + 100, map);
-        
         return Data;
     }
 
@@ -230,18 +224,23 @@ public class Function {
         Slang slang_definition = new Slang();
         TreeSet<String>Definition = new TreeSet<>();
         Definition = (TreeSet<String>) Data.get(slang);
-        if(Definition == null){
+        
+        if(!Data.containsKey(slang)){
             System.out.println("The Slang is not exists.");
+            return;
+        }
+        if(Definition == null){
+            System.out.println("Slang: " + slang);
+            System.out.println("No definition for this slang.");
             return;
         }
         slang_definition.setLístDefinition(Definition);
         slang_definition.PrintDefinition();
     }
     
-    public static HashMap History(String slang, HashMap Data, HashMap history){
+    public static HashMap History(String slang, HashMap<String, TreeSet<String>> Data, HashMap<String, TreeSet<String>> history){
         TreeSet<String>Definition = new TreeSet<>();
-        Definition = (TreeSet<String>) Data.get(slang);
-        System.out.println(Definition);
+        Definition = Data.get(slang);
         if(Definition != null){
             history.put(slang, Definition);
         }
@@ -503,15 +502,21 @@ public class Function {
     
     public static void PrintData(HashMap data){
         Iterator it = data.entrySet().iterator();
+        int count = 1;
         while (it.hasNext() ){
             Map.Entry pair = (Map.Entry)it.next();
             Slang slang = new Slang();
             TreeSet<String> definitions = new TreeSet<String>();
             definitions = (TreeSet<String>)pair.getValue();
             slang.setLístDefinition(definitions);
+            System.out.println("----- " + count + " -----");
             System.out.println("Slang: " + pair.getKey());
-            System.out.println("-----Definitions-----");
+            System.out.println("Definitions:");
             slang.PrintDefinition();
+            System.out.println("------------");
+            System.out.println();
+            
+            count++;
         }
     }
 }

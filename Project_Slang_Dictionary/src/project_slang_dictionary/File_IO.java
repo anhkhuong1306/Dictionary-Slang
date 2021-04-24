@@ -59,16 +59,50 @@ public class File_IO {
                     } else {
                         Definition.add(arrayWord[1]);
                     }
-                }
-                
-                if(map.containsKey(arrayWord[0]) == false){
-                   
-                    map.put(arrayWord[0], (TreeSet<String>) Definition);
+                    
+                    if(map.containsKey(arrayWord[0]) == false){
+
+                        map.put(arrayWord[0], (TreeSet<String>) Definition);
+                    }
+                    else{
+                        TreeSet<String> tmpArr = map.get(arrayWord[0]);
+                        tmpArr.addAll(Definition);
+                    }
                 }
                 else{
-                    TreeSet<String> tmpArr = map.get(arrayWord[0]);
-                    tmpArr.addAll(Definition);
+                    Definition.add("NO DEFINITION FOR THIS SLANG.");
+                    if(map.containsKey(arrayWord[0]) == false){
+                        map.put(arrayWord[0].toString(), (TreeSet<String>) Definition);
+                    }
+                    else{
+                        TreeSet<String> tmpArr = map.get(arrayWord[0]);
+                        tmpArr.addAll(Definition);
+                    }
                 }
+                
+//                System.out.println(arrayWord instanceof String[]);
+                
+//                if(arrayWord instanceof String[]){
+//                    if(map.containsKey(arrayWord[0]) == false){
+//
+//                        map.put(arrayWord[0], (TreeSet<String>) Definition);
+//                    }
+//                    else{
+//                        TreeSet<String> tmpArr = map.get(arrayWord[0]);
+//                        tmpArr.addAll(Definition);
+//                    }
+//                }
+//                else{
+//                    if(map.containsKey(arrayWord) == false){
+//
+//                        map.put(arrayWord.toString(), (TreeSet<String>) Definition);
+//                    }
+//                    else{
+//                        TreeSet<String> tmpArr = map.get(arrayWord);
+//                        tmpArr.addAll(Definition);
+//                    }
+//                }
+                    
                 
             }
             return map;
@@ -92,7 +126,7 @@ public class File_IO {
         return null;
     }
     /*tham khảo từ nguồn internet và từ nguồn tài liệu thuộc trường ĐH KHTN*/
-    public static void WriteFile(HashMap data, String filename)throws IOException{
+    public static void WriteFile(HashMap<String, TreeSet<String>> data, String filename)throws IOException{
         
         
         FileWriter fw = null;
@@ -112,15 +146,19 @@ public class File_IO {
                 String Content = "";
                 String Word = (String) mapElement.getKey();
                 
-                TreeSet<String> list = (TreeSet<String>) mapElement.getValue();
+                TreeSet<String> list = new TreeSet<String>();
+                list =  (TreeSet<String>) mapElement.getValue();
                 String Definition = "";
                 
-                while(!list.isEmpty()){
+                if(!list.isEmpty()){
                     if(list.size() == 1){
                         Definition += list.pollFirst();
                     }
                     else {
-                        Definition += list.pollFirst() + "| ";
+                        
+                        for (String definition : list) {
+                            Definition += definition + "| ";
+                        }
                     }
                 }
             
@@ -132,6 +170,7 @@ public class File_IO {
             e.printStackTrace();
         } finally {
             try {
+                bw.flush();
                 if (bw != null) {
                     bw.close();
                 }

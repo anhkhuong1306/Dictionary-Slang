@@ -46,9 +46,9 @@ public class Slang {
     
     public void InputWord(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the slang: ");
+        System.out.print("Enter the slang: ");
         this.word = sc.nextLine();
-        System.out.println("Enter the Definition: ");
+        System.out.print("Enter the Definition: ");
         sc = new Scanner(System.in);
         this.definition = sc.nextLine();
     }
