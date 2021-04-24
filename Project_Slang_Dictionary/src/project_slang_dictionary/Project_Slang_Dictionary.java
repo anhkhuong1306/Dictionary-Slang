@@ -32,8 +32,10 @@ public class Project_Slang_Dictionary {
         System.out.println("Execution time in milliseconds: " + timeElapsed);
         File_IO Read_file = new File_IO();
         Function fc = new Function();
-        HashMap<String, TreeSet<String>> hashmap = fc.ReadData(0, "output.txt");
-        HashMap<String, TreeSet<String>> history = fc.ReadData(0, "history.txt");
+        String SLANG_FILE = "output.txt";
+        String HISTORY_FILE = "history.txt";
+        HashMap<String, TreeSet<String>> hashmap = fc.ReadData(0, SLANG_FILE);
+        HashMap<String, TreeSet<String>> history = fc.ReadData(0, HISTORY_FILE);
         
         boolean Continue = true;
         while(Continue == true)
