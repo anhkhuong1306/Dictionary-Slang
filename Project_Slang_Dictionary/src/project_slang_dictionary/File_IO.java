@@ -29,7 +29,7 @@ public class File_IO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     public Function function = new Function();
-    
+    /*tham khảo từ nguồn internet và từ nguồn tài liệu thuộc trường ĐH KHTN*/
     public static Map ReadFile(String filename) throws FileNotFoundException{
         
         BufferedReader br = null;
@@ -91,7 +91,7 @@ public class File_IO {
         }
         return null;
     }
-    
+    /*tham khảo từ nguồn internet và từ nguồn tài liệu thuộc trường ĐH KHTN*/
     public static void WriteFile(HashMap data, String filename)throws IOException{
         
         

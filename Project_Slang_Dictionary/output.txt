@@ -1,4 +1,4 @@
-BBC`British Broadcasting Corporation
+BBC`
 BBB`Bugging Beyond Belief
 BBE`Babe
 GLOTR`Good Luck On The Rebuild
@@ -541,7 +541,7 @@ TAR`Not very pure heroin
 TAT`Rubbish| Tattoo| junk
 TAV`Marijuana
 TAW`Teachers Are Watching
-SDMF`Determination| Forever| Merciless| Society Dwelling Mother F***er| Strength
+SDMF` Determination|  Forever|  Merciless| Society Dwelling Mother F***er| Strength
 TAY`Thinking About You
 TBA`To Be Announced
 TBC`To Be Continued
@@ -565,7 +565,7 @@ CAL`Cyberathlete Amateur League (gaming)
 TGOD`Taylor Gang Or Die
 TCB`Taking Care of Business
 CAP`Shoot
-CAS`Action| Appearance| Close Air Support| Confidence| Creativity| Service| Swagger
+CAS` Action|  Appearance|  Service|  Swagger| Close Air Support| Confidence| Creativity
 RAIL`Line of cocaine
 DIBS`A claim
 CAT`Computed Axial Tomography| Cool person
@@ -873,7 +873,7 @@ D12`Dirty Dozen
 U2B`YouTube
 COP`Close of Play| Officer of the law
 RAWK`Rock
-+1`Partner ,Me too
++1`Me too| Partner 
 COS`Because
 COR`God
 AFAIK`As Far As I Know
@@ -894,6 +894,7 @@ IYAM`If You Ask Me
 CPM`Cost Per Thousand
 DISO`Desperately In Search Of
 CPP`C Plus Plus| C++ (programming language)
+Person wearing a hooded sweatshirt`
 THAR`There
 TRA`Bye
 CPR`Cardiopulmonary Resuscitation
@@ -1023,7 +1024,7 @@ RBAY`Right Back At You
 CWB`Crazy White Boys
 2B`To Be
 ISWYDT`I See What You Did There
-CWD`Chicks With Dicks| Chronic Wasting Disease| Comment When Done| Cringe| Die| Wither
+CWD` Die|  Wither| Chicks With Dicks| Chronic Wasting Disease| Comment When Done| Cringe
 TXT`SMS message
 2G`Too Good
 DISTRO`Distribution
@@ -1213,7 +1214,7 @@ DCI`Drum Corps International
 IYSS`If You Say So
 =P`Sticking tongue out
 DCT`Dream Come True
->3`Evil but happy,Hate
+>3`Evil but happy| Hate
 =S`Confused
 PEERS`People in the same group, equals in age, background etc
 TYSM`Thank You So Much
@@ -1305,7 +1306,7 @@ AG`Aggressive
 ATGATT`All The Gear All The Time
 B)`Smiley with sunglasses
 DGI`Don't Get Involved| Don't Get It
-AI`Artificial Intelligence,As If
+AI`Artificial Intelligence| As If
 AJ`Apple Juice
 DGK`Dirty Ghetto Kids (skateboards)
 TTYITM`Talk To You In The Morning
@@ -1845,7 +1846,7 @@ OS`Operating System
 OT`Off Topic
 OU`Open University
 ARPU`Average Revenue Per User
-OW`Oh| Other Woman| Ouch| Well
+OW` Well| Oh| Other Woman| Ouch
 OX`Sharp blade
 OY`Oh Yeah
 KOKO`Most important thing
@@ -1997,7 +1998,7 @@ LATA`LATERS
 WRUD`What Are You Doing?
 TW`Trigger Warning
 TX`Thanks
-LATE`Missed a period| possibly pregnant,Dead
+LATE`Dead| Missed a period| possibly pregnant
 TY`Thank You
 LATM`Laughing At The Moment
 WASP`White Anglo-Saxon Protestant
@@ -2119,7 +2120,7 @@ YM`Yahoo Messenger| Your Mom
 WIKTT`When I Kissed the Teacher
 YN`Crossed fingers
 YO`Hi| Years Old| Your
-YP`Please| Yes| Your Problem
+YP` Please| Yes| Your Problem
 YQ`I Like You
 VBD`Very Big Deal
 YR`Yea, Right.
@@ -2286,7 +2287,7 @@ SWYD`Sleep When You're Dead
 CHIZ`Swiz| swindle
 PRO BONO`For good
 IKWYDLS`I Know What You Did Last Summer
-CHIO`Sexy| girl| good looking
+CHIO` girl| Sexy| good looking
 OOSOOM`Out Of Sight, Out Of Mind
 RICK ROLL`Trick someone with a link to Rick Astley video
 WSWTA`What Shall We Talk About?
@@ -2361,7 +2362,7 @@ EOL`End Of Lecture
 EOS`End Of Show
 EOR`End Of Rant
 W2F`Way Too Funny
-EOT`End Of Thread ,end of discussion
+EOT`End Of Thread | end of discussion
 EOW`End Of Watch
 W2G`Way To Go
 CYPH`To Share A Smoke
@@ -2651,7 +2652,7 @@ FGJ`For Great Justice
 PITCH`Contribute money
 WIA`Wounded In Action
 STAHP`Stop
-WIC`Infants and Children| Women| World in Conflict
+WIC` Infants and Children| Women| World in Conflict
 FGS`For God's Sake
 WID`With
 WIF`With
@@ -2705,7 +2706,7 @@ ACCT`Account
 DFTBA`Don't Forget To Be Awesome
 WLD`Would
 CHOOB`High level player who acts like a noob
-CHONG`Good looking| attractive| cute
+CHONG` cute| Good looking| attractive
 BFFN`Best Friend For Now
 BFFL`Best Friend For Life
 COTCH`Relax| chill
@@ -2789,7 +2790,7 @@ FOB`Fresh Off the Boat
 LYLAB`Love You Like A Brother
 FOA`First Of All
 FOC`Free Of Charge
-POTS`I can't really talk| Parents Over The Shoulder| parents watching
+POTS` I can't really talk| Parents Over The Shoulder| parents watching
 FOF`Full of Fail
 LYLAF`Love You Like A Friend
 UNCE`Sound of club music
@@ -2804,7 +2805,7 @@ OLOY`Only Losers Obey Yolo
 ACID`LSD
 FON`Freak Of Nature
 FOM`Far Out Man
-D(M)V`DC| Department of Motor Vehicles| Maryland| Virginia
+D(M)V` Maryland|  Virginia| DC| Department of Motor Vehicles
 FOO`Fool
 FOT`Fat, but HOT
 FOV`Field Of View
@@ -2904,7 +2905,7 @@ WUN`Bye
 FTA`From The Article
 POWN`PWN
 WUP`What
-FTC`Comment| Favorite,Thumbs up
+FTC`Comment| Favorite| Thumbs up
 VEXED`Angry| annoyed
 WUS`Wimp
 ACLU`American Civil Liberties Union
@@ -3022,7 +3023,7 @@ NIZZ`No
 LYMYWY`Love You, Miss You, Want You
 WD40`Multi-purpose lubricant
 SYIH`See You In Hell
-ATWA`Air| All The Way Alive| Animals| Trees| Water
+ATWA` Animals|  Trees|  Water| Air| All The Way Alive
 WTTC`Welcome To The club
 CACTUS`Broken| dead
 L337`LEET in LEET speak
@@ -3444,7 +3445,7 @@ YBS`You'll Be Sorry
 SALUT`Hi
 HAG`Unattractive old woman
 YBW`You've Been Warned
-HAI`Hey| Yes| hi
+HAI` hi| Hey| Yes
 TLOL`Truly Laughing Out Loud
 HAK`Hugs And Kisses
 HAN`Alone
@@ -3761,7 +3762,7 @@ BYTM`Better You Than Me
 ONYD`Oh No You Didn't
 HWB`Hottie With Body
 LF1M`Looking For One More
-WEPA`All right| cool| yeah!
+WEPA` yeah!| All right| cool
 YATLOML`You Are The Love Of My Life
 PRAWN`Girl who is good looking except for her face
 HWK`Homework
@@ -3980,7 +3981,7 @@ SK8R`Skater
 BIFF`BFF| Best Friend
 OOML`Out Of My League
 OOMF`One Of My Friends/Followers
-IKE`DUDE| Eh| I Know
+IKE` Eh| DUDE| I Know
 IKH`I Know, Huh?
 IKM`I Know Man
 IKN`I Know Not
@@ -4327,7 +4328,7 @@ TTIWWP`This Thread Is Worthless Without Pictures
 JKD`Jeet Kune Do| Martial Art
 SQUARE`Cigarette
 TINWIS`That Is Not What I Said
-JKL`Just Kidding| Just Kidding Loser| LOL
+JKL` LOL| Just Kidding| Just Kidding Loser
 ESOL`English for Speakers of Other Languages
 WGAT`what
 JKN`Joking
@@ -4425,7 +4426,7 @@ TE AMO`I love you (Spanish)
 ELBOW`A pound of marijuana
 (S)`Seriously
 SLAN`Goodbye
-HOODIE`Hooded sweatshirt| Person wearing a hooded sweatshirt
+HOODIE`
 LUWAMH`Love You with All My Heart
 WAFWOT`What A F***ing Waste Of Time
 JUZ`Just
@@ -4718,7 +4719,7 @@ SMFT`So Much For That
 MAUI WOWIE`Marijuana| weed from Hawaii
 USMC`United States Marine Corps
 DEECE`Decent| cool| great
-COPACETIC`Cool| OK| excellent
+COPACETIC` excellent| Cool| OK
 VENT`Ventrilo
 LYTD`Love You To Death
 PORCH MONKEY`lazy person
@@ -5602,7 +5603,7 @@ TDDWP`Til Death Do We Part
 NBF`New Best Friend
 PSHAW`disbelief| scepticism
 NBK`Natural Born Killers| Never Been Kissed
-SOOC`Straight Out Of Camera ,not Photoshopped
+SOOC`Straight Out Of Camera | not Photoshopped
 +_+`Dead man
 SOOD`Cool
 NBM`Nil By Mouth| Not Before Midnight
@@ -6235,7 +6236,7 @@ CARTY`Party in a car
 ICBB`I Can't Be Bothered
 OTB`Off The boat
 OTA`Over The Air
-CAPS`Bullets,Mushrooms
+CAPS`Bullets| Mushrooms
 OTD`On The Dot| Out The Door
 MONG`Complete idiot
 OTC`Over The Counter
@@ -6650,7 +6651,7 @@ MPOG`Multiplayer Online Game
 PSA`Publice Service Announcement
 PSD`Photoshop Data file
 PSH`Dismissive expression
-PSI`Pounds per Square Inch (pressure),Greek letter
+PSI`Greek letter| Pounds per Square Inch (pressure)
 PSN`Playstation Network
 IWOOT`I Want One Of Those
 PSM`Personal Short Message
@@ -6754,7 +6755,7 @@ STEAMING`Drunk| intoxicated
 CHAMPION`Good| great
 IDKE`I Don't Know Either
 ROFC`Rolling On Floor Crying
-/:)`Flirtation ,Sign Of Suspicion
+/:)`Flirtation | Sign Of Suspicion
 SAFE`Something or someone good
 SAFM`Stay Away From Me
 FLBP`Future Lower Back Problems
@@ -7564,7 +7565,7 @@ MATE`Friend
 VLOG`Video Log
 GR&D`Grinning, Running & Ducking
 CUZZ`Friend| cousin
-NATTY`Natural Light beer| Smart| cool| good
+NATTY` cool|  good| Natural Light beer| Smart
 AOTS`Attack of the Show (TV show)
 AZN`Asian
 YDWK`YDWTK

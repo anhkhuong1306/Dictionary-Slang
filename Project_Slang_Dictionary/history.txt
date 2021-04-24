@@ -1,2 +1,5 @@
-HOODIE`Hooded sweatshirt| Person wearing a hooded sweatshirt
-HOODIE`Hooded sweatshirt| Person wearing a hooded sweatshirt
+BBC`British Broadcasting Corporation
+HOODIE`Hooded sweatshirt
+aws`
+AWS`
+BBF`

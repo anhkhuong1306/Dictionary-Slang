@@ -25,50 +25,111 @@ public class Project_Slang_Dictionary {
     
     public static void main(String[] args) throws FileNotFoundException, IOException {
         // TODO code application logic here
-//        String slang = "";
-//        Scanner sc = new Scanner(System.in);
-//        System.out.println("Enter slang you want to search: ");
-//        slang = sc.nextLine();
         long startTime = System.currentTimeMillis();
+        long endTime = System.currentTimeMillis();
+        long timeElapsed = endTime - startTime;   
+
+        System.out.println("Execution time in milliseconds: " + timeElapsed);
+        
 
         File_IO Read_file = new File_IO();
         Function fc = new Function();
-//        Map<String, ArrayList> map = null;
-        HashMap<String, TreeSet<String>> hashmap;
-//        
-//        String filename = "slang.txt";
-//        
-//        map = Read_file.ReadFile(filename);
-//        int sizeMap = map.size();
-//
-//
-        hashmap = fc.ReadData(0, "output.txt");
+        HashMap<String, TreeSet<String>> hashmap = fc.ReadData(0, "output.txt");
+        HashMap<String, TreeSet<String>> history = fc.ReadData(0, "history.txt");
         
-        
-
-
-//        hashmap = fc.AddNewWord(hashmap);
-//        hashmap = fc.AddNewWord(hashmap);
-//        System.out.println(hashmap);
-//        hashmap = fc.DeleteWord(hashmap);
-//          hashmap = fc.EditWord(hashmap);
-//        System.out.println(map);
+        boolean Continue = true;
+        while(Continue == true)
+        {
+            String option;
+            System.out.println("==========Menu==========");
+            System.out.println("1. Looking up Slang Word.");
+            System.out.println("2. Looking up Definition.");
+            System.out.println("3. Display the slang word was finded.");
+            System.out.println("4. Adding a slang word.");
+            System.out.println("5. Edit a slang word.");
+            System.out.println("6. Delete a slang word.");
+            System.out.println("7. Reset the data of dictionary.");
+            System.out.println("8. This day slang word.");
+            System.out.println("9. Quiz with slang word.");
+            System.out.println("10. Quiz with definition.");
             
-        System.out.println(hashmap);
-        
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Enter your option: ");
+            option = sc.nextLine();
+            
+            switch(option){
+                case "1": 
+                    System.out.println("1. Looking up Slang Word.");
+                    String slang = "";
+                    sc = new Scanner(System.in);
+                    System.out.println("Enter slang you want to search: ");
+                    slang = sc.nextLine();
+                    fc.SearchBySlang(slang, hashmap);
+                    history = fc.History(slang, hashmap, history);
+                    break;
+                case "2":
+                    System.out.println("2. Looking up Definition.");
+                    String definition = "";
+                    sc = new Scanner(System.in);
+                    System.out.println("Enter slang you want to search: ");
+                    definition = sc.nextLine();
+                    fc.SearchByDefinition(hashmap, definition);
+                    break;
+                case "3":
+                    System.out.println("3. Display the slang word was finded.");
+                    fc.PrintData(history);
+                    break;
+                case "4":
+                    System.out.println("4. Adding a slang word.");
+                    hashmap = fc.AddNewWord(hashmap);
+                    break;
+                case "5":
+                    System.out.println("5. Edit a slang word.");
+                    hashmap = fc.EditWord(hashmap);
+                    break;
+                case "6":
+                    System.out.println("6. Delete a slang word.");
+                    hashmap = fc.DeleteWord(hashmap);
+                    break;
+                case "7":
+                    System.out.println("7. Reset the data of dictionary.");
+                    hashmap = fc.ReadData(1, "slang.txt");
+                    break;
+                case "8":
+                    System.out.println("8. This day slang word.");
+                    fc.ThisDaySlang(hashmap);
+                    break;
+                case "9":
+                    System.out.println("9. Quiz with slang word.");
+                    fc.QuizSlang(hashmap);
+                    break;
+                case "10":
+                    System.out.println("10. Quiz with definition.");
+                    fc.QuizDefinition(hashmap);
+                    break;
+                default:
+                    System.out.println("The option is invalid");
+                    break;
+            }
+            
+            System.out.println("Do you want to continue (yes/no)");
+            String moretime;
+            sc = new Scanner(System.in);
+            moretime = sc.nextLine();
+            
 
-        System.out.println();
-//        Read_file.WriteFile(hashmap);
-//        fc.SearchBySlang(slang, hashmap);
-        long endTime = System.currentTimeMillis();
-        long timeElapsed = endTime - startTime;   
-//        fc.SearchByDefinition(hashmap, "Cool");
-//        fc.ThisDaySlang(hashmap);
-          fc.QuizDefinition(hashmap);
-//        fc.QuizSlang(hashmap);
-        System.out.println("Execution time in milliseconds: " + timeElapsed);
-//        HashMap<String, TreeSet<String>> history = new HashMap<>();
-//        history = fc.History(slang, hashmap, history);
-//        Read_file.WriteFile(history, "history.txt");
+            if(moretime.equalsIgnoreCase("y") || moretime.equalsIgnoreCase("yes"))
+            {
+                Continue = true;     
+                continue;   
+            }
+            else{
+                Continue = false;
+                break;
+            }
+        }
+        
+        Read_file.WriteFile(history, "history.txt");
+        Read_file.WriteFile(hashmap, "output.txt");
     }
 }

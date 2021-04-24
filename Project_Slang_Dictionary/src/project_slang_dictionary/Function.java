@@ -299,8 +299,9 @@ public class Function {
         }
         else
         {
-            
+            /*Tham khảo từ stackoverflow https://stackoverflow.com/questions/16108734/convert-setmap-entryk-v-to-hashmapk-v*/
             Map.Entry<String, TreeSet<String>> entry = (Map.Entry<String, TreeSet<String>>) data.entrySet().toArray()[index];
+            
             HashMap<String, TreeSet<String>> thisDaySlangWord = new HashMap<>();
             TreeSet<String> definitions = entry.getValue();
             
@@ -497,6 +498,20 @@ public class Function {
         }
         else{
             System.out.println("Your answer is incorrect.");
+        }
+    }
+    
+    public static void PrintData(HashMap data){
+        Iterator it = data.entrySet().iterator();
+        while (it.hasNext() ){
+            Map.Entry pair = (Map.Entry)it.next();
+            Slang slang = new Slang();
+            TreeSet<String> definitions = new TreeSet<String>();
+            definitions = (TreeSet<String>)pair.getValue();
+            slang.setLístDefinition(definitions);
+            System.out.println("Slang: " + pair.getKey());
+            System.out.println("-----Definitions-----");
+            slang.PrintDefinition();
         }
     }
 }
