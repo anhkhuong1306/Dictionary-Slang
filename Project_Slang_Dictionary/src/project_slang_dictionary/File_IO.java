@@ -5,7 +5,11 @@
  */
 package project_slang_dictionary;
 import java.io.*;
+import java.net.URL;
+import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -24,26 +28,54 @@ import java.util.stream.Stream;
  * @author anhkh
  */
 public class File_IO {
-
+    static final String DEFAULT_FILE_NAME = "slang.txt";
+    
     private static String[] Array(String string) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     public Function function = new Function();
     /*tham khảo từ nguồn internet và từ nguồn tài liệu thuộc trường ĐH KHTN*/
-    public static Map ReadFile(String filename) throws FileNotFoundException{
+    public Map ReadFile(String filename) throws FileNotFoundException{
         
         BufferedReader br = null;
+//        InputStreamReader fr = null;
         FileReader fr = null;
+        File dir = null;
+        File f = null;
         try{
-            
-            File f = new File(filename);
-            
-            if (f.exists()) {
-                fr = new FileReader(filename);
-            } else {
-                fr = new FileReader("slang.txt");
-            }
-            
+
+                String className = this.getClass().getName().replace('.', '/');
+                String classJar = this.getClass().getResource("/" + className + ".class").toString(); /* tham khảo từ https://www.rgagnon.com/javadetails/java-0391.html */
+                
+                if (classJar.startsWith("jar:")) {
+                    System.out.println("*** running from jar!");
+                    String jarPath = URLDecoder.decode(getClass().getProtectionDomain().getCodeSource().getLocation().getPath(), "UTF-8"); /* tham khảo từ https://coderanch.com/t/669663/java/load-write-file-getClass-getResource */
+                    String completePath = jarPath.substring(0, jarPath.lastIndexOf("/")) + File.separator + "data" + File.separator + filename;
+
+                    f = new File(completePath);
+                    try {
+                        if (!f.exists() && !f.createNewFile()) {
+                            System.out.println("File doesn't exist, and creating file with path: " + completePath + " failed. ");
+
+                        }else{
+                            System.out.println("Input data exists, or file with path " + completePath + " created successfully. ");
+                        }
+                        fr = new FileReader(completePath);
+                     
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                else
+                {
+                    dir = new File("src/data");
+                    f = new File(dir, filename);                   
+                    if (!f.exists()) {
+                       f = new File(dir, DEFAULT_FILE_NAME);                  
+                    }
+                    fr = new FileReader(f.getAbsolutePath());
+                }
+      
             br = new BufferedReader(fr);
             String sCurrentLine;
             int count = 0;
@@ -78,32 +110,7 @@ public class File_IO {
                         TreeSet<String> tmpArr = map.get(arrayWord[0]);
                         tmpArr.addAll(Definition);
                     }
-                }
-                
-//                System.out.println(arrayWord instanceof String[]);
-                
-//                if(arrayWord instanceof String[]){
-//                    if(map.containsKey(arrayWord[0]) == false){
-//
-//                        map.put(arrayWord[0], (TreeSet<String>) Definition);
-//                    }
-//                    else{
-//                        TreeSet<String> tmpArr = map.get(arrayWord[0]);
-//                        tmpArr.addAll(Definition);
-//                    }
-//                }
-//                else{
-//                    if(map.containsKey(arrayWord) == false){
-//
-//                        map.put(arrayWord.toString(), (TreeSet<String>) Definition);
-//                    }
-//                    else{
-//                        TreeSet<String> tmpArr = map.get(arrayWord);
-//                        tmpArr.addAll(Definition);
-//                    }
-//                }
-                    
-                
+                }               
             }
             return map;
         }
@@ -125,19 +132,50 @@ public class File_IO {
         }
         return null;
     }
+    
     /*tham khảo từ nguồn internet và từ nguồn tài liệu thuộc trường ĐH KHTN*/
-    public static void WriteFile(HashMap<String, TreeSet<String>> data, String filename)throws IOException{
-        
+    public void WriteFile(HashMap<String, TreeSet<String>> data, String filename)throws IOException{
         
         FileWriter fw = null;
         BufferedWriter bw = null;
-        File file = new File(filename);
-        try {
+        
+        File dir = null;
+        File file = null;        
+        
+        
+        String className = this.getClass().getName().replace('.', '/');
+        String classJar = this.getClass().getResource("/" + className + ".class").toString(); /* tham khảo từ https://www.rgagnon.com/javadetails/java-0391.html */
+
+        if (classJar.startsWith("jar:")) {
+            System.out.println("*** running from jar!");
+            String jarPath = URLDecoder.decode(getClass().getProtectionDomain().getCodeSource().getLocation().getPath(), "UTF-8"); /* tham khảo từ https://coderanch.com/t/669663/java/load-write-file-getClass-getResource */
+            String completePath = jarPath.substring(0, jarPath.lastIndexOf("/")) + File.separator + "data" + File.separator + filename;
+
+            file = new File(completePath);
+            try {
+                if (!file.exists() && !file.createNewFile()) {
+                    System.out.println("File doesn't exist, and creating file with path: " + completePath + " failed. ");
+
+                } else {
+                    System.out.println("Input data exists, or file with path " + completePath + " created successfully. ");
+                }
+                fw = new FileWriter(completePath);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            dir = new File("src/data");
+            file = new File(dir, filename);
             if (!file.exists()) {
                 file.createNewFile();                
             }
-            
-            fw = new FileWriter(file, false);    
+            fw = new FileWriter(file.getAbsolutePath());
+        }
+        
+        try {
+
+            fw = new FileWriter(file.getCanonicalPath(), false);    
             bw = new BufferedWriter(fw);
             Iterator hmIterator = data.entrySet().iterator();       
             while (hmIterator.hasNext()) {
@@ -155,7 +193,6 @@ public class File_IO {
                         Definition += list.pollFirst();
                     }
                     else {
-                        
                         for (String definition : list) {
                             Definition += definition + "| ";
                         }
@@ -181,8 +218,5 @@ public class File_IO {
                 ex.printStackTrace();
             }
         }
-    }
-    
-    
-
+    }  
 }

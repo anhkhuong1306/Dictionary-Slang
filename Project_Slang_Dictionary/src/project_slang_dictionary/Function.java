@@ -22,7 +22,6 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
-import static project_slang_dictionary.File_IO.ReadFile;
 
 /**
  *
@@ -49,13 +48,12 @@ public class Function {
         if(Data.containsKey(sl.getWord())){
             String YES_NO;
             Scanner sc = new Scanner(System.in);
-            System.out.print("The Slang Word was existed. Do you want to keep on. (yes/no)");
+            System.out.print("The Slang Word was existed. Do you want to keep on. (yes/no): ");
             YES_NO = sc.nextLine();
 
             if(YES_NO.equalsIgnoreCase("yes")){
                 
                 definition = (TreeSet<String>) Data.get(sl.getWord());
-                System.out.println(definition);
                 if(definition == null){
 
                     definition.add(sl.getDefinition());
@@ -64,7 +62,6 @@ public class Function {
                 }
                 else{
                     definition.add(sl.getDefinition());
-                    System.out.print(definition.getClass());
                     Data.put(sl.getWord(), definition);
                     System.out.print("The slang has added: " + sl.getWord());
                 }
@@ -84,11 +81,11 @@ public class Function {
     
     public HashMap DeleteWord(HashMap Data){
         String Slang;
-        System.out.println("Enter the slang word you want to delete: ");
+        System.out.print("Enter the slang word you want to delete: ");
         Scanner sc = new Scanner(System.in);
         Slang = sc.nextLine();
         if(Data.containsKey(Slang)){
-            System.out.println("Do you want to delete this slang word?(yes/no)");
+            System.out.print("Do you want to delete this slang word?(yes/no): ");
             String YES_NO;
             sc = new Scanner(System.in);
             YES_NO = sc.nextLine();
@@ -114,7 +111,7 @@ public class Function {
     
     public HashMap EditWord(HashMap Data){
         String Slang;
-        System.out.println("Enter the slang word you want to edit: ");
+        System.out.print("Enter the slang word you want to edit: ");
         Scanner sc = new Scanner(System.in);
         Slang = sc.nextLine();
         
@@ -151,13 +148,13 @@ public class Function {
             if(definitions.contains(definition)){
                 
                 sc = new Scanner(System.in);
-                System.out.println("Enter the new definition you want.");
+                System.out.print("Enter the new definition you want: ");
                 newDefinition = sc.nextLine();
                 
                 while(newDefinition.isEmpty()){
                     
                     System.out.println("YOU CANNOT LEFT EMPTY THIS FIELD!");
-                    System.out.println("Enter the new definition you want.");
+                    System.out.print("Enter the new definition you want: ");
                     sc = new Scanner(System.in);
                     newDefinition = sc.nextLine();
                     
@@ -169,13 +166,13 @@ public class Function {
             }
             else{
                 
-                System.out.println("The definition is not exists. Do you want to add a new definition? (yes/no)");
+                System.out.print("The definition is not exists. Do you want to add a new definition? (yes/no): ");
                 String YES_NO;
                 sc = new Scanner(System.in);
                 YES_NO = sc.nextLine();
                 if(YES_NO.equalsIgnoreCase("yes")){
                     
-                    System.out.println("Enter the new definition you want.");
+                    System.out.print("Enter the new definition you want: ");
                     sc = new Scanner(System.in);
                     newDefinition = sc.nextLine();
                     definitions.add(newDefinition);
@@ -375,10 +372,10 @@ public class Function {
         System.out.println("Question: " + Question);
         Collections.shuffle(answerList);
    
-        System.out.println("A " + answerList.get(0));
-        System.out.println("B " + answerList.get(1));
-        System.out.println("C " + answerList.get(2));
-        System.out.println("D " + answerList.get(3));
+        System.out.println("A. " + answerList.get(0));
+        System.out.println("B. " + answerList.get(1));
+        System.out.println("C. " + answerList.get(2));
+        System.out.println("D. " + answerList.get(3));
 
         String user_answer = "";
         Scanner sc = new Scanner(System.in);
@@ -407,6 +404,7 @@ public class Function {
         }
         else{
             System.out.println("Your answer is incorrect.");
+            System.out.println("-> Answer: " + Result + " <-");
         }
     }
     
@@ -465,10 +463,10 @@ public class Function {
         System.out.println("Question: " + Question);
         Collections.shuffle(answerList);
    
-        System.out.println("A " + answerList.get(0));
-        System.out.println("B " + answerList.get(1));
-        System.out.println("C " + answerList.get(2));
-        System.out.println("D " + answerList.get(3));
+        System.out.println("A. " + answerList.get(0));
+        System.out.println("B. " + answerList.get(1));
+        System.out.println("C. " + answerList.get(2));
+        System.out.println("D. " + answerList.get(3));
 
         String user_answer = "";
         Scanner sc = new Scanner(System.in);
@@ -497,6 +495,8 @@ public class Function {
         }
         else{
             System.out.println("Your answer is incorrect.");
+            System.out.println("-> Answer: " + Result + " <-");
+
         }
     }
     

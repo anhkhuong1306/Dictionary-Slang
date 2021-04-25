@@ -7,11 +7,13 @@ package project_slang_dictionary;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeSet;
+import sun.applet.Main;
 
 /**
  *
@@ -25,17 +27,12 @@ public class Project_Slang_Dictionary {
     
     public static void main(String[] args) throws FileNotFoundException, IOException {
         // TODO code application logic here
-        long startTime = System.currentTimeMillis();
-        long endTime = System.currentTimeMillis();
-        long timeElapsed = endTime - startTime;   
 
-        System.out.println("Execution time in milliseconds: " + timeElapsed);
         File_IO Read_file = new File_IO();
         Function fc = new Function();
-        String SLANG_FILE = "output.txt";
-        String HISTORY_FILE = "history.txt";
-        HashMap<String, TreeSet<String>> hashmap = fc.ReadData(0, SLANG_FILE);
-        HashMap<String, TreeSet<String>> history = fc.ReadData(0, HISTORY_FILE);
+ 
+        HashMap<String, TreeSet<String>> hashmap = fc.ReadData(0, "output.txt");
+        HashMap<String, TreeSet<String>> history = fc.ReadData(0, "history.txt");
         
         boolean Continue = true;
         while(Continue == true)
@@ -66,9 +63,16 @@ public class Project_Slang_Dictionary {
                     sc = new Scanner(System.in);
                     System.out.println("Enter slang you want to search: ");
                     slang = sc.nextLine();
+                    
+                    long startTime_1 = System.currentTimeMillis();
                     fc.SearchBySlang(slang, hashmap);
+                    long endTime_1 = System.currentTimeMillis();
+                    long timeElapsed =  endTime_1 - startTime_1;   
+                    System.out.println("Execution time in milliseconds: " + timeElapsed);
+                    
                     history = fc.History(slang, hashmap, history);
                     break;
+                    
                 case "2":
                     System.out.println("========== 2. Looking up Definition. ==========");
                     System.out.println();
@@ -76,48 +80,70 @@ public class Project_Slang_Dictionary {
                     sc = new Scanner(System.in);
                     System.out.println("Enter slang you want to search: ");
                     definition = sc.nextLine();
+                    
+                    long startTime_2 = System.currentTimeMillis();                    
                     fc.SearchByDefinition(hashmap, definition);
+                    long endTime_2 = System.currentTimeMillis();
+                    timeElapsed = endTime_2 - startTime_2;   
+                    System.out.println("Execution time in milliseconds: " + timeElapsed);                    
                     break;
+                    
                 case "3":
                     System.out.println("========== 3. Display the slang word was finded. ==========");
                     System.out.println();
+                    long startTime_3 = System.currentTimeMillis(); 
                     fc.PrintData(history);
+                    long endTime_3 = System.currentTimeMillis();
+                    timeElapsed = endTime_3 - startTime_3;   
+                    System.out.println("Execution time in milliseconds: " + timeElapsed);
                     break;
+                    
                 case "4":
                     System.out.println("========== 4. Adding a slang word. ==========");
                     System.out.println();
                     hashmap = fc.AddNewWord(hashmap);
                     break;
+                    
                 case "5":
                     System.out.println("========== 5. Edit a slang word. ==========");
                     System.out.println();
                     hashmap = fc.EditWord(hashmap);
                     break;
+                    
                 case "6":
                     System.out.println("========== 6. Delete a slang word. ==========");
                     System.out.println();
                     hashmap = fc.DeleteWord(hashmap);
                     break;
+                    
                 case "7":
                     System.out.println("========== 7. Reset the data of dictionary. ==========");
                     System.out.println();
                     hashmap = fc.ReadData(1, "slang.txt");
                     break;
+                    
                 case "8":
                     System.out.println("========== 8. This day slang word. ==========");
                     System.out.println();
+                    long startTime_4 = System.currentTimeMillis(); 
                     fc.ThisDaySlang(hashmap);
+                    long endTime_4 = System.currentTimeMillis();
+                    timeElapsed = endTime_4 - startTime_4;   
+                    System.out.println("Execution time in milliseconds: " + timeElapsed);
                     break;
+                    
                 case "9":
                     System.out.println("========== 9. Quiz with slang word. ==========");
                     System.out.println();
                     fc.QuizSlang(hashmap);
                     break;
+                    
                 case "10":
                     System.out.println("========== 10. Quiz with definition. ==========");
                     System.out.println();
                     fc.QuizDefinition(hashmap);
                     break;
+                    
                 default:
                     System.out.println("The option is invalid");
                     break;
@@ -130,8 +156,7 @@ public class Project_Slang_Dictionary {
             sc = new Scanner(System.in);
             moretime = sc.nextLine();
             
-            if(moretime.equalsIgnoreCase("y") || moretime.equalsIgnoreCase("yes"))
-            {
+            if(moretime.equalsIgnoreCase("y") || moretime.equalsIgnoreCase("yes")){
                 Continue = true;  
                 continue;   
             }

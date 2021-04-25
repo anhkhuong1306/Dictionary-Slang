@@ -10,6 +10,22 @@
 <project name="Project_Slang_Dictionary" default="default" basedir=".">
     <description>Builds, tests, and runs the project Project_Slang_Dictionary.</description>
     <import file="nbproject/build-impl.xml"/>
+    <target name="dist" depends="compile" description="generate the distribution" >
+        <mkdir dir="${dist}/data"/>
+    </target>
+    <target name="-post-compile">
+        <copy todir="${dist.dir}/data">
+            <fileset dir="./build/classes/data">
+                <include name="**/*.txt"/>
+            </fileset>
+        </copy>
+<!--        <copy dir="${build}/classes/data" file="output.txt" todir="${dist.dir}/data"/> 
+        <copy file="slang.txt" todir="${dist.dir}/data"/> 
+        <copy file="history.txt" todir="${dist.dir}/data"/> 
+        <copy file="thisdayslangword.txt" todir="${dist.dir}/data"/> -->
+    </target> 
+    
+
     <!--
 
     There exist several targets which are by default empty and which can be 
